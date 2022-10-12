@@ -136,10 +136,8 @@ func attest(predicateType, predicatePath, blobPath string) error {
 
 func main() {
 	if len(os.Args) != 4 {
-		fmt.Println(`Usage: trivy attest [-h,--help] PREDICATE_TYPE PREDICATE_PATH BLOB_PATH
+		fmt.Println(`Usage: trivy attest PREDICATE_TYPE PREDICATE_PATH BLOB_PATH
  A Trivy plugin that publish SBOM attestation.
-Options:
-  -h, --help    Show usage.
 Examples:
   # Publish SBOM attestation
   trivy attest cyclonedx ./sbom.cdx.json ./my-executable`)

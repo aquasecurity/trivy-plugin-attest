@@ -4,7 +4,7 @@ version: "0.1.0"
 usage: publish SBOM attestation
 description: |-
   A Trivy plugin that publish SBOM attestation
-  Usage: trivy attest [-h,--help] PREDICATE_TYPE PREDICATE_PATH BLOB_PATH
+  Usage: trivy attest PREDICATE_TYPE PREDICATE_PATH BLOB_PATH
 platforms:
   - selector:
       os: darwin

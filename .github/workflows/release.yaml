@@ -26,7 +26,7 @@ jobs:
         uses: goreleaser/goreleaser-action@v3
         with:
           version: v1.4.1
-          args: release -f=goreleaser.yml --snapshot --rm-dist --timeout 60m
+          args: release -f=goreleaser.yml --rm-dist --timeout 60m
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

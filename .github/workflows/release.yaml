@@ -29,32 +29,3 @@ jobs:
           args: release -f=goreleaser.yml --rm-dist --timeout 60m
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Upload artifacts
-      - name: Upload artifacts (trivy_plugin_attest_Linux-64bit)
-        uses: actions/upload-artifact@v3
-        with:
-          name: trivy_plugin_attest_Linux-64bit
-          path: dist/trivy_plugin_attest_*_Linux-64bit.tar.gz
-          if-no-files-found: error
-
-      - name: Upload artifacts (trivy_plugin_attest_Linux-ARM64)
-        uses: actions/upload-artifact@v3
-        with:
-          name: trivy_plugin_attest_Linux-ARM64
-          path: dist/trivy_plugin_attest_*_Linux-ARM64.tar.gz
-          if-no-files-found: error
-
-      - name: Upload artifacts (trivy_plugin_attest_macOS-64bit)
-        uses: actions/upload-artifact@v3
-        with:
-          name: trivy_plugin_attest_macOS-64bit
-          path: dist/trivy_plugin_attest_*_macOS-64bit.tar.gz
-          if-no-files-found: error
-
-      - name: Upload artifacts (trivy_plugin_attest_macOS-ARM64)
-        uses: actions/upload-artifact@v3
-        with:
-          name: trivy_plugin_attest_macOS-ARM64
-          path: dist/trivy_plugin_attest_*_macOS-ARM64.tar.gz
-          if-no-files-found: error

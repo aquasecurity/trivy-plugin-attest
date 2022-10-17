@@ -1,6 +1,6 @@
 name: "attest"
 repository: github.com/aquasecurity/trivy-plugin-attest
-version: "0.1.0"
+version: "0.0.1"
 usage: publish SBOM attestation
 description: |-
   A Trivy plugin that publish SBOM attestation
@@ -9,20 +9,20 @@ platforms:
   - selector:
       os: darwin
       arch: amd64
-    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.1.0/trivy_plugin_attest_0.1.0_macOS-64bit.tar.gz
+    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.0.1/trivy_plugin_attest_0.0.1_macOS-64bit.tar.gz
     bin: ./attest
   - selector:
       os: darwin
       arch: arm64
-    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.1.0/trivy_plugin_attest_0.1.0_macOS-ARM64.tar.gz
+    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.0.1/trivy_plugin_attest_0.0.1_macOS-ARM64.tar.gz
     bin: ./attest
   - selector:
       os: linux
       arch: amd64
-    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.1.0/trivy_plugin_attest_0.1.0_Linux-64bit.tar.gz
+    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.0.1/trivy_plugin_attest_0.0.1_Linux-64bit.tar.gz
     bin: ./attest
   - selector:
       os: linux
       arch: arm64
-    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.1.0/trivy_plugin_attest_0.1.0_Linux-ARM64.tar.gz
+    uri: https://github.com/aquasecurity/trivy-plugin-attest/releases/download/v0.0.1/trivy_plugin_attest_0.0.1_Linux-ARM64.tar.gz
     bin: ./attest

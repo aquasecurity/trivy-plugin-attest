@@ -10,9 +10,18 @@ $ trivy plugin install github.com/aquasecurity/trivy-plugin-attest
 ## Usage
 
 ```
-Usage: trivy attest [-h,--help] PREDICATE_TYPE PREDICATE_PATH BLOB_PATH
- A Trivy plugin that publish SBOM attestation.
+A Trivy plugin that publish SBOM attestation
+
+Usage:
+  attest [flags]
+
 Examples:
+  trivy attest --type PREDICATE_TYPE --predicate PREDICATE_PATH BLOB_PATH
   # Publish SBOM attestation
-  trivy attest cyclonedx ./sbom.cdx.json ./my-executable
+  trivy attest --type cyclonedx --predicate ./sbom.cdx.json ./my-executable
+
+Flags:
+  -h, --help               help for attest
+      --predicate string   specify the predicate file path
+      --type string        specify the predicate type(cyclonedx)
 ```

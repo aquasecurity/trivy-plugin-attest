@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 
 	"github.com/in-toto/in-toto-golang/in_toto"
@@ -18,6 +19,7 @@ import (
 	"github.com/sigstore/cosign/pkg/cosign/attestation"
 	"github.com/sigstore/cosign/pkg/types"
 	"github.com/sigstore/sigstore/pkg/signature/dsse"
+	"github.com/spf13/cobra"
 	"golang.org/x/xerrors"
 )
 
@@ -135,30 +137,50 @@ func attest(predicateType, predicatePath, blobPath string) error {
 }
 
 func main() {
-	if len(os.Args) != 4 {
-		fmt.Println(`Usage: trivy attest PREDICATE_TYPE PREDICATE_PATH BLOB_PATH
- A Trivy plugin that publish SBOM attestation.
-Examples:
+	var rootCmd = &cobra.Command{
+		Use:   "attest",
+		Short: "A Trivy plugin that publish SBOM attestation",
+		Example: `  trivy attest --type PREDICATE_TYPE --predicate PREDICATE_PATH BLOB_PATH
   # Publish SBOM attestation
-  trivy attest cyclonedx ./sbom.cdx.json ./my-executable`)
-		os.Exit(1)
+  trivy attest --type cyclonedx --predicate ./sbom.cdx.json ./my-executable`,
+		Args: cobra.ExactArgs(1),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			rawType, err := cmd.Flags().GetString("type")
+			if err != nil {
+				return err
+			}
+
+			var predicateType string
+			switch rawType {
+			case "cyclonedx":
+				predicateType = in_toto.PredicateCycloneDX
+			default:
+				return fmt.Errorf("unsupported predicate type")
+			}
+
+			predicatePath, err := cmd.Flags().GetString("predicate")
+			if err != nil {
+				return err
+			}
+
+			blobPath := args[0]
+
+			err = attest(predicateType, predicatePath, blobPath)
+			if err != nil {
+				return err
+			}
+
+			return nil
+		},
 	}
 
-	rawPredicateType := os.Args[1]
-	var predicateType string
-	switch rawPredicateType {
-	case "cyclonedx":
-		predicateType = in_toto.PredicateCycloneDX
-	default:
-		fmt.Println("unsupported predicate type")
-		os.Exit(1)
-	}
+	rootCmd.Flags().StringP("type", "", "", "specify the predicate type(cyclonedx)")
+	rootCmd.MarkFlagRequired("type")
 
-	predicatePath := os.Args[2]
-	blobPath := os.Args[3]
-	err := attest(predicateType, predicatePath, blobPath)
-	if err != nil {
-		panic(err)
-	}
+	rootCmd.Flags().StringP("predicate", "", "", "specify the predicate file path")
+	rootCmd.MarkFlagRequired("predicate")
 
+	if err := rootCmd.Execute(); err != nil {
+		log.Fatal(err)
+	}
 }

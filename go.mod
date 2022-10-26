@@ -3,9 +3,10 @@ module github.com/aquasecurity/trivy-plugin-attest
 go 1.19
 
 require (
-	github.com/in-toto/in-toto-golang v0.4.0
+	github.com/in-toto/in-toto-golang v0.5.0
 	github.com/sigstore/cosign v1.13.0
 	github.com/sigstore/sigstore v1.4.4
+	github.com/spf13/cobra v1.6.1
 	golang.org/x/xerrors v0.0.0-20220609144429-65e65417b02f
 )
 
@@ -170,7 +171,6 @@ require (
 	github.com/soheilhy/cmux v0.1.5 // indirect
 	github.com/spf13/afero v1.8.2 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
-	github.com/spf13/cobra v1.6.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/spf13/viper v1.13.0 // indirect
@@ -229,7 +229,7 @@ require (
 	google.golang.org/api v0.98.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20220929141241-1ce7b20da813 // indirect
-	google.golang.org/grpc v1.49.0 // indirect
+	google.golang.org/grpc v1.50.1 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/cheggaaa/pb.v1 v1.0.28 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect

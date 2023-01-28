@@ -38,6 +38,19 @@ func fileDigest(path string) (string, error) {
 }
 
 func readPredicate(path string) (interface{}, error) {
+	fi, err := os.Stat(path)
+	if err != nil {
+		return nil, xerrors.Errorf("failed to stat file: %w", err)
+	}
+
+	// The maximum size of the attestation defined by the public instance of Rekor is 100KB.
+	// But of course you can define your own size limit if you host Rekor server on your own.
+	// To get more detail: https://github.com/sigstore/rekor#public-instance
+	if fi.Size() > 100*1024 {
+		return nil, xerrors.Errorf("you should use only a file that is smaller than 100KB, "+
+			"which is the maximum size of the file defined by the public instance of Rekor. %s size is larger than (>100KB)", path)
+	}
+
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, xerrors.Errorf("failed to read file: %w", err)

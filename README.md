@@ -7,6 +7,9 @@ Publish SBOM attestation
 $ trivy plugin install github.com/aquasecurity/trivy-plugin-attest
 ```
 
+> An important note about the public instance of the Rekor maintained by the Sigstore team is that the attestation size is limited to 100KB. If you are using the public instance, please make sure that your SBOM is smaller than 100KB.
+> To get more detail, please refer to the Rekor project's     [documentation](https://github.com/sigstore/rekor#public-instance).
+
 ## Usage
 
 ```
